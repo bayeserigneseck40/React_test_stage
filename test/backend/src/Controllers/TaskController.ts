@@ -29,7 +29,6 @@ export default class TaskController {
 
   @Patch('/tasks/:id')
   async update(@Param('id') id: string, @Body() dto: SaveTaskDto) {
-    // Pour l'update, utilisez le cas d'utilisation d'update et passez l'id et le DTO
     return (await this.useCaseFactory.create(SaveTaskUseCase)).handle(dto);
   }
 
