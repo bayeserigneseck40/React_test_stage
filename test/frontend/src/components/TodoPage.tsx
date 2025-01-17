@@ -13,6 +13,7 @@ const TodoPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskName, setNewTaskName] = useState('');
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     // Fetch tasks on mount
@@ -36,6 +37,7 @@ const TodoPage = () => {
       setTasks((prev) => [...prev, createdTask]);
     }
 
+    // Reset input and editing state
     setNewTaskName('');
     setEditingTask(null);
   };
@@ -53,6 +55,10 @@ const TodoPage = () => {
   const isButtonDisabled =
     !newTaskName.trim() ||
     (editingTask ? newTaskName === editingTask.name : false);
+
+  const filteredTasks = tasks.filter((task) =>
+    task.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <Container>
@@ -74,7 +80,15 @@ const TodoPage = () => {
           {editingTask ? 'Update' : 'Add'} Task
         </Button>
       </Box>
-      {tasks.map((task) => (
+      <Box mb={2}>
+        <TextField
+          fullWidth
+          label="Search Tasks"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </Box>
+      {filteredTasks.map((task) => (
         <Box key={task.id} display="flex" alignItems="center" mb={1}>
           <Typography flex={1}>{task.name}</Typography>
           <IconButton onClick={() => startEditing(task)}>
