@@ -1,6 +1,4 @@
-/**
- * @todo YOU HAVE TO IMPLEMENT THE DELETE AND SAVE TASK ENDPOINT, A TASK CANNOT BE UPDATED IF THE TASK NAME DID NOT CHANGE, YOU'VE TO CONTROL THE BUTTON STATE ACCORDINGLY
- */
+
 import { Check, Delete } from '@mui/icons-material';
 import { Box, Button, Container, IconButton, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -16,7 +14,6 @@ const TodoPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    // Fetch tasks on mount
     api.get('/tasks').then((data) => setTasks(data));
   }, [api]);
 
@@ -24,7 +21,6 @@ const TodoPage = () => {
     if (!newTaskName.trim()) return;
 
     if (editingTask) {
-      // Edit existing task
       const updatedTask = await api.patch(`/tasks/${editingTask.id}`, {
         name: newTaskName,
       });
@@ -32,12 +28,10 @@ const TodoPage = () => {
         prev.map((task) => (task.id === updatedTask.id ? updatedTask : task))
       );
     } else {
-      // Create new task
       const createdTask = await api.post('/tasks', { name: newTaskName });
       setTasks((prev) => [...prev, createdTask]);
     }
 
-    // Reset input and editing state
     setNewTaskName('');
     setEditingTask(null);
   };
