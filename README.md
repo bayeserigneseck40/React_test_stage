@@ -51,6 +51,11 @@ b) Défis rencontrés
 Gestion des dépendances Prisma : La synchronisation du fichier .env et la connexion à la base de données ont nécessité quelques ajustements.
 Contrôle des DTO : Il a fallu ajouter des validations précises pour garantir la robustesse des API.
 
+b) Fonctionnalité de recherche
+J'ai ajouté une fonctionnalité de recherche pour retrouver facilement des tâches par leur nom :
+
+Nouvel Endpoint : GET /tasks/search?q=<query>.
+
 4. Frontend (React)
 a) Fonctionnalités implémentées
 Affichage de la liste des tâches :
@@ -63,19 +68,30 @@ Composant contrôlé avec un champ de texte (TextField).
 Suppression des tâches :
 
 Méthode handleDelete connectée au bouton supprimer pour supprimer une tâche et mettre à jour la liste en temps réel.
-b) Défis rencontrés
+
+b) Fonctionnalité de recherche
+J'ai ajouté une barre de recherche pour filtrer les tâches affichées.
+Ajout d'un champ TextField dans l'interface utilisateur et d'une méthode handleSearchTasks :
+c) Défis rencontrés
 La gestion des états locaux des tâches (avec useState) a nécessité une adaptation, particulièrement pour l'édition et les interactions en temps réel avec l'API.
 
-Résultat
+
 Fonctionnalités Finales
-Gestion complète des tâches (CRUD).
-Interface utilisateur conviviale pour afficher, créer, modifier et supprimer des tâches.
-Fonctionnalité bonus ajoutée : champ "Description" pour les tâches.
+Gestion complète des tâches :
+Création
+Modification
+Suppression
+Recherche par nom (bonus)
+Interface utilisateur réactive et intuitive.
+
+Difficultés Rencontrées
+Synchronisation des états frontend/backend : Assurer que le frontend affiche les données actualisées 
+après chaque opération (création, modification, suppression, recherche).
+Configuration Prisma : Comprendre et corriger des erreurs lors de la première migration de la base.
+Gestion des formulaires contrôlés dans React : Implémenter correctement l’édition et la validation des données.
 
 Conclusion
-Ce projet m'a permis de démontrer mes compétences techniques et organisationnelles dans un environnement full stack. 
-Malgré quelques défis initiaux, notamment liés à la configuration et à la gestion
-des dépendances, j'ai réussi à produire une application fonctionnelle répondant aux exigences du test.
+Ce projet m'a permis de mettre en œuvre mes compétences en développement full stack tout en relevant les défis d'intégration entre le frontend et le backend. La fonctionnalité bonus de recherche illustre ma capacité à réfléchir à des solutions supplémentaires qui améliorent l’expérience utilisateur.
 
-Je suis satisfait du résultat obtenu dans le temps imparti et reste ouvert aux retours pour m'améliorer davantage.
+Je reste ouvert à toute opportunité de retour ou d'amélioration. Merci d'avoir examiné mon travail.
 
